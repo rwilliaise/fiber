@@ -183,8 +183,10 @@ c	ay	net/minecraft/nbt/Tag
 c	az	net/minecraft/net/IPacketHandler
 	m	(Ldb;)V	a	a
 		p	1	db	packet
+	m	()V	a	interruptWorkers
 	m	(Ldc;)V	a	a
 		p	1	dc	func
+	m	()V	f	interrupt
 	m	()Ljava/net/SocketAddress;	c	getAddress
 c	rp	net/minecraft/item/PickaxeItem
 c	ba	net/minecraft/net/LocalPacketHandler
@@ -198,21 +200,25 @@ c	ba	net/minecraft/net/LocalPacketHandler
 		p	1	db	packet
 c	bb	net/minecraft/net/PacketHandler
 	f	Ljava/net/Socket;	i	socket
-	f	Ljava/util/concurrent/atomic/AtomicInteger;	b	writingPackets
-	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;)V	<init>	<init>
-		p	1	socket	socket
-		p	2	string	name
-		p	3	dc	handler
+	f	Z	n	n
 	f	Ljava/security/PrivateKey;	A	key
-	f	Ljava/util/concurrent/atomic/AtomicInteger;	a	readingPackets
 	f	Ljava/lang/Thread;	t	writeWorker
-	f	Ljavax/crypto/SecretKey;	z	secret
 	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;Ljava/security/PrivateKey;)V	<init>	<init>
 		p	1	socket	socket
 		p	2	string	name
 		p	3	dc	handler
 		p	4	privateKey	key
 	f	Ljava/lang/Thread;	u	readWorker
+	f	Ljava/io/DataOutputStream;	l	outStream
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	b	writingPackets
+	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;)V	<init>	<init>
+		p	1	socket	socket
+		p	2	string	name
+		p	3	dc	handler
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	a	readingPackets
+	f	Ljavax/crypto/SecretKey;	z	secret
+	f	Ljava/net/SocketAddress;	j	address
+	f	Ljava/io/DataInputStream;	k	inStream
 c	bc	net/minecraft/net/ReadWorkerThread
 c	bd	net/minecraft/net/WriteWorkerThread
 c	jm	net/minecraft/entity/Entity
@@ -416,6 +422,8 @@ c	w	net/minecraft/command/CommandHelp
 c	x	net/minecraft/command/CommandKill
 c	y	net/minecraft/command/CommandSeed
 c	db	net/minecraft/net/Packet
+	m	(IZZLjava/lang/Class;)V	a	a
+		p	0	integer	id
 	m	(Ldc;)V	a	process
 c	dc	net/minecraft/net/NetPlayHandler
 	c	TODO: is this server or client? i dont wanna know tbh
