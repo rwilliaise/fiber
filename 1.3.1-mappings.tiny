@@ -1,0 +1,345 @@
+tiny	2	0	intermediary	named
+c	py	net/minecraft/item/BowItem
+c	qc	net/minecraft/item/CoalItem
+c	qf	net/minecraft/item/ItemGroup
+	m	(Ljava/util/List;)V	a	getItems
+		p	1	list	list
+	m	()Ljava/lang/String;	b	getName
+	f	Lqf;	f	MISC
+	m	()Lrg;	d	getIcon
+	f	Lqf;	d	REDSTONE
+	f	[Lqf;	a	GROUPS
+	f	Lqf;	b	BUILDING_BLOCKS
+	f	Lqf;	l	MATERIALS
+	f	Lqf;	j	COMBAT
+	f	Ljava/lang/String;	o	name
+	f	Lqf;	h	FOOD
+	m	()I	k	getSide
+	m	()I	a	getId
+	m	()Ljava/lang/String;	c	getTranslatedName
+	m	()I	e	getIconId
+		c	Returns the id of the item to be displayed as the icon.
+	m	(ILjava/lang/String;)V	<init>	<init>
+		p	1	integer	id
+		p	2	string	name
+	f	Lqf;	e	TRANSPORTATION
+	f	Lqf;	c	DECORATIONS
+	m	()Z	l	onTop
+	f	Lqf;	m	INVENTORY
+	f	I	n	id
+	f	Lqf;	k	BREWING
+	f	Lqf;	i	TOOLS
+	m	(Ljava/lang/String;)Lqf;	a	texture
+		p	1	string	path
+	f	Lqf;	g	SEARCH
+	f	Ljava/lang/String;	p	texture
+c	qg	net/minecraft/item/GroupBuilding
+c	qh	net/minecraft/item/GroupBrewing
+c	qi	net/minecraft/item/GroupMaterials
+c	net/minecraft/server/MinecraftServer	net/minecraft/server/MinecraftServer
+	m	()Lq;	D	getCommandParser
+	m	()Lnet/minecraft/server/MinecraftServer;	C	getInstance
+	m	()Let;	ab	getPlayers
+	f	Ljava/util/logging/Logger;	a	LOGGER
+c	qj	net/minecraft/item/GroupInventory
+c	qk	net/minecraft/item/GroupDecorations
+c	ql	net/minecraft/item/GroupRedstone
+c	qm	net/minecraft/item/GroupTransportation
+c	qn	net/minecraft/item/GroupMisc
+c	qo	net/minecraft/item/GroupSearch
+c	qp	net/minecraft/item/GroupFood
+c	qq	net/minecraft/item/GroupTools
+c	aa	net/minecraft/command/CommandTime
+	m	(Lr;I)V	a	parseArgument
+c	qr	net/minecraft/item/GroupCombat
+c	ac	net/minecraft/util/TranslatedException
+	f	[Ljava/lang/Object;	a	objects
+	m	()[Ljava/lang/Object;	a	getObjects
+	m	(Ljava/lang/String;[Ljava/lang/Object;)V	<init>	<init>
+		p	2		objects
+		p	1		cause
+c	ad	net/minecraft/util/FormattedException
+c	ae	net/minecraft/util/SyntaxException
+c	af	net/minecraft/util/PlayerNotFoundException
+c	ag	net/minecraft/util/NotFoundException
+c	ah	net/minecraft/util/SyntaxedException
+c	ak	net/minecraft/util/I18n
+	c	Translates keys into readable text.
+	m	()Ljava/util/TreeMap;	b	getKeyMap
+	m	(Ljava/lang/String;)Ljava/lang/String;	b	getRaw
+		p	1	string	key
+	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	a	getf
+		p	2	arr	formats
+		p	1	string	key
+	m	(Ljava/lang/String;)Ljava/lang/String;	c	get
+		p	1	string	name
+	f	Ljava/lang/String;	d	locale
+	f	Ljava/util/Properties;	b	config
+	m	(Ljava/util/Properties;Ljava/lang/String;)V	a	loadFile
+		p	1	properties	props
+		p	2	string	locale
+	f	Z	e	loaded
+	m	()Z	d	isLoaded
+	m	(Ljava/lang/String;)V	<init>	<init>
+		p	1	string	locale
+	m	()V	e	load
+	m	(Ljava/lang/String;)V	a	loadLocale
+		p	1	string	locale
+	m	(Ljava/lang/String;)Z	e	renderBackwards
+		p	0	string	key
+	m	()Ljava/lang/String;	c	getLocale
+	f	Ljava/util/TreeMap;	c	localeMap
+	m	()Lak;	a	getInstance
+	f	Lak;	a	INSTANCE
+c	al	net/minecraft/nbt/TagByteArray
+c	am	net/minecraft/nbt/TagByte
+c	an	net/minecraft/nbt/TagCompound
+c	ao	net/minecraft/nbt/TagDouble
+c	et	et
+	m	(Ljava/lang/String;)Lgt;	f	get
+c	ap	net/minecraft/nbt/TagEnd
+c	net/minecraft/client/Minecraft	net/minecraft/client/Minecraft
+	m	()Lnet/minecraft/client/Minecraft;	x	getInstance
+c	aq	net/minecraft/nbt/TagFloat
+c	rc	net/minecraft/item/FoodItem
+c	ar	net/minecraft/nbt/TagIntArray
+c	as	net/minecraft/nbt/TagInt
+c	re	net/minecraft/item/AxeItem
+c	at	net/minecraft/nbt/TagList
+c	au	net/minecraft/nbt/TagLong
+c	rg	net/minecraft/item/Item
+	f	Lrg;	s	WOOD_SHOVEL
+	f	Lrg;	u	WOOD_AXE
+	f	Lrg;	o	IRON_INGOT
+	f	Lrg;	q	IRON_SWORD
+	m	(I)V	<init>	<init>
+		p	1	integer	id
+	m	()Lqf;	w	getGroup
+	f	Lrg;	f	IRON_SHOVEL
+	f	Lrg;	l	ARROW
+	f	[Lrg;	e	ITEMS
+	f	Lrg;	n	DIAMOND
+	f	I	bT	id
+	f	Lrg;	h	IRON_AXE
+	f	Lrg;	j	APPLE
+	m	(Ljava/lang/String;)Lrg;	b	setName
+	f	Ljava/util/Random;	d	RANDOM
+	f	Lrg;	t	WOOD_PICKAXE
+	f	Lrg;	p	GOLD_INGOT
+	f	Lrg;	r	WOOD_SWORD
+	m	(I)Lrg;	d	setStackSize
+		p	1	integer	maxStackSize
+	f	Lrg;	k	BOW
+	f	Lrg;	m	COAL
+	f	Lrg;	bI	RECORD_13
+	f	I	bU	maxStackSize
+	f	Lrg;	g	IRON_PICKAXE
+	f	Lrg;	i	FLINT_AND_STEEL
+c	aw	net/minecraft/nbt/TagShort
+c	ax	net/minecraft/nbt/TagString
+c	ay	net/minecraft/nbt/Tag
+	m	(BLjava/lang/String;)Lay;	a	fromByte
+		p	0	byte1	type
+		p	1	string	data
+	m	()B	a	toByte
+	m	(B)Ljava/lang/String;	a	fromByte
+c	rp	net/minecraft/item/PickaxeItem
+c	jm	net/minecraft/entity/Entity
+	m	(Ljd;I)Z	a	damage
+	m	(Lan;)V	d	toTag
+		p	1	an	tag
+c	fk	net/minecraft/command/CommandSaveAll
+c	sa	net/minecraft/item/ShovelItem
+c	of	net/minecraft/entity/EntityPlayer
+c	sm	net/minecraft/item/SwordItem
+c	a	net/minecraft/crash/CrashReport
+	c	CrashReport handles all reporting of crashes, and their saving to file.
+	f	Ljava/util/Map;	c	infoMap
+	m	(Ljava/lang/StringBuilder;)V	a	appendInfo
+		c	Append crash report onto a {@link StringBuilder}.
+		p	1		builder
+	m	(Ljava/io/File;)Z	a	toFile
+		p	1		file
+	m	(Ljava/lang/String;Ljava/lang/Throwable;)V	<init>	<init>
+		p	2		throwable
+		p	1		cause
+	f	Ljava/lang/Throwable;	b	throwable
+	m	()Ljava/lang/Throwable;	b	getThrowable
+	m	()V	g	putSpecifications
+		c	Add computer specifications to the CrashReport.
+	m	(Ljava/lang/String;Ljava/util/concurrent/Callable;)V	a	putInfo
+		p	2		object
+		p	1		name
+	f	Ljava/lang/String;	a	cause
+	m	()Ljava/lang/String;	a	getCause
+	f	Ljava/io/File;	d	out
+	m	()Ljava/io/File;	f	getFile
+	m	()Ljava/lang/String;	e	finalize
+	m	()Ljava/lang/String;	c	toString
+	m	(Ljava/lang/String;Ljava/lang/Object;)V	a	putInfo
+		p	2		object
+		p	1		name
+	m	()Ljava/lang/String;	d	printStackTrace
+	m	(Ljava/lang/String;Ljava/lang/Throwable;)V	a	putInfo
+		p	2		throwable
+		p	1		name
+	m	()Ljava/lang/String;	h	addComment
+c	b	net/minecraft/crash/CallableVersion
+	c	
+	m	()Ljava/lang/Object;	call	call
+	f	La;	a	crashReport
+	m	(La;)V	<init>	<init>
+		p	1		crashReport
+c	c	net/minecraft/crash/CallableOSInfo
+	f	La;	a	crashReport
+	m	(La;)V	<init>	<init>
+		p	1		crashReport
+	m	()Ljava/lang/Object;	call	call
+c	d	net/minecraft/crash/CallableJavaVersion
+	m	()Ljava/lang/Object;	call	call
+	f	La;	a	crashReport
+	m	(La;)V	<init>	<init>
+		p	1		crashReport
+c	e	net/minecraft/crash/CallableJVM
+	m	()Ljava/lang/Object;	call	call
+	f	La;	a	crashReport
+	m	(La;)V	<init>	<init>
+		p	1		crashReport
+c	f	net/minecraft/crash/CallableMemory
+	m	()Ljava/lang/Object;	call	call
+	f	La;	a	crashReport
+	m	(La;)V	<init>	<init>
+		p	1		crashReport
+c	g	net/minecraft/crash/CallableArguments
+	f	La;	a	crashReport
+	m	(La;)V	<init>	<init>
+		p	1		crashReport
+	m	()Ljava/lang/Object;	call	call
+c	h	net/minecraft/util/IntConstants
+c	j	net/minecraft/util/Vector3i
+	c	Used for positioning blocks. 
+	m	(III)F	e	dot
+		c	Perform the dot product on the specified x, y, and z coordinates.
+		p	1		x
+		p	2		y
+		p	3		z
+	f	I	b	y
+	m	(III)V	<init>	<init>
+		c	Create a new Vector3i with specified x, y, and z components.
+		p	2		y
+		p	1		x
+		p	3		z
+	f	I	a	x
+	m	(III)V	b	set
+		p	1		x
+		p	2		y
+		p	3		z
+	m	(Ljava/lang/Object;)Z	equals	equals
+		p	1		other
+	m	()V	<init>	<init>
+		c	Create a Vector3i with all zeroes.
+	m	(Lj;)V	<init>	<init>
+		c	Create a new Vector3i with the same positional value as another Vector3i.
+		p	1		other
+	m	(Ljava/lang/Object;)I	compareTo	getDirectional
+		c	idk wtf this does
+		p	1		other
+	f	I	c	z
+c	k	net/minecraft/util/CrashReportException
+	m	(La;)V	<init>	<init>
+		p	1	a	report
+	m	()Ljava/lang/Throwable;	getCause	getCause
+	m	()La;	a	getCrashReport
+	f	La;	a	report
+	m	()Ljava/lang/String;	getMessage	getMessage
+c	l	net/minecraft/util/FontHelper
+	c	Used to process text for use by the font renderer.
+	m	(C)Z	a	canRender
+		c	Check if a character is supported within the FontRenderer.
+		p	0	character	character
+	m	(Ljava/lang/String;)Ljava/lang/String;	a	processString
+		c	Remove all unsupported characters from a string
+		p	0	string	str
+	f	[C	b	SPECIAL_CHARACTERS
+	m	()Ljava/lang/String;	a	loadFont
+	f	Ljava/lang/String;	a	FONT
+		c	Every character that is supported inside the font renderer, packed into one string.
+c	gt	net/minecraft/entity/ServerEntityPlayer
+c	m	net/minecraft/util/ITranslator
+c	n	net/minecraft/command/Command
+	m	(Lr;)Lof;	c	parsePlayer
+		p	0	r	executor
+	f	Lm;	a	translator
+	m	(Lr;Ljava/lang/String;II)I	a	parseInt
+		c	Shorthand for parsing an integer from a string with bounds
+		p	2	integer3	lower
+		p	1	string	val
+		p	0	r	executor
+		p	3	integer4	upper
+	m	(Lr;Ljava/lang/String;)I	a	parseInt
+		c	Shorthand for parsing an integer from a string
+		p	1	string	val
+		p	0	r	executor
+	m	(Ljava/lang/String;Ljava/lang/String;)Z	a	nameEquals
+		p	0	string1	name
+		p	1	string2	other
+	m	([Ljava/lang/String;I)Ljava/lang/String;	a	concatArguments
+		p	0	arr	args
+		p	1		offset
+	m	([Ljava/lang/Object;)Ljava/lang/String;	a	concat
+	m	(Lm;)V	a	setTranslator
+	m	(Lr;Ljava/lang/String;[Ljava/lang/Object;)V	a	sendMessage
+	m	(Lr;Ljava/lang/String;I)I	a	parseInt
+		c	Shorthand for parsing an integer from a string with a lower bound
+		p	2	integer	lower
+		p	0	r	executor
+		p	1	string	val
+	m	(Ljava/lang/Object;)I	compareTo	compareTo
+		p	1		other
+c	o	net/minecraft/command/Commands
+	f	Ljava/util/Map;	a	commandMap
+	m	(Lp;)Lp;	a	execute
+		p	1	p	command
+	m	([Ljava/lang/String;)[Ljava/lang/String;	a	parseArgs
+		p	0	arr	args
+	f	Ljava/util/Set;	b	commands
+c	p	net/minecraft/command/ICommand
+	m	(Lr;)Z	b	canExecute
+	m	(Lr;)Ljava/lang/String;	a	getUsage
+		p	1		player
+	m	()Ljava/util/List;	a	getAliases
+	m	()Ljava/lang/String;	b	getName
+	m	(Lr;[Ljava/lang/String;)Ljava/util/List;	a	get
+		p	2		args
+		p	1	r	executor
+	m	(Lr;[Ljava/lang/String;)V	b	execute
+		p	1		player
+		p	2		args
+c	q	net/minecraft/command/ICommandParser
+	m	(Lr;)Ljava/util/List;	a	getExecutable
+		p	1	r	executor
+	m	()Ljava/util/Map;	a	getMap
+	m	(Lr;Ljava/lang/String;)Ljava/util/List;	b	parse
+		p	2	string	command
+		p	1	r	executor
+	m	(Lr;Ljava/lang/String;)V	a	execute
+		p	1	r	executor
+		p	2	string	command
+c	r	net/minecraft/command/IExecutor
+	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	a	translate
+		p	2		args
+		p	1		key
+	m	(Ljava/lang/String;)V	a	sendMessage
+c	s	net/minecraft/command/CommandDefaultGamemode
+c	t	net/minecraft/command/CommandExperience
+	m	(Ljava/lang/String;)Lof;	a	getPlayer
+c	u	net/minecraft/command/CommandGamemode
+c	v	net/minecraft/command/CommandGive
+	m	(Ljava/lang/String;)Lof;	a	getPlayer
+		p	1	string	name
+c	w	net/minecraft/command/CommandHelp
+	m	()Ljava/util/Map;	c	getCommandMap
+	m	(Lr;)Ljava/util/List;	d	getSortedCommands
+		p	1	r	executor
+c	x	net/minecraft/command/CommandKill
+c	y	net/minecraft/command/CommandSeed
