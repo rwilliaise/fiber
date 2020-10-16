@@ -51,18 +51,26 @@ c	qp	net/minecraft/item/GroupFood
 c	qq	net/minecraft/item/GroupTools
 c	aa	net/minecraft/command/CommandTime
 	m	(Lr;I)V	a	parseArgument
+c	ab	net/minecraft/command/CommandToggleDownfall
 c	qr	net/minecraft/item/GroupCombat
-c	ac	net/minecraft/util/TranslatedException
+c	ac	net/minecraft/util/error/TranslatedException
 	f	[Ljava/lang/Object;	a	objects
 	m	()[Ljava/lang/Object;	a	getObjects
 	m	(Ljava/lang/String;[Ljava/lang/Object;)V	<init>	<init>
 		p	2		objects
 		p	1		cause
-c	ad	net/minecraft/util/FormattedException
-c	ae	net/minecraft/util/SyntaxException
-c	af	net/minecraft/util/PlayerNotFoundException
-c	ag	net/minecraft/util/NotFoundException
-c	ah	net/minecraft/util/SyntaxedException
+c	ad	net/minecraft/util/error/FormattedException
+c	ae	net/minecraft/util/error/SyntaxException
+c	af	net/minecraft/util/error/PlayerNotFoundException
+c	ag	net/minecraft/util/error/NotFoundException
+c	ah	net/minecraft/util/error/SyntaxedException
+c	aj	net/minecraft/util/I18nHelper
+	m	(Ljava/lang/String;)Ljava/lang/String;	a	getRaw
+		p	0	string	rawKey
+	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	a	getf
+		p	1	arr	formats
+		p	0	string	key
+	f	Lak;	a	I18N
 c	ak	net/minecraft/util/I18n
 	c	Translates keys into readable text.
 	m	()Ljava/util/TreeMap;	b	getKeyMap
@@ -107,6 +115,33 @@ c	as	net/minecraft/nbt/TagInt
 c	re	net/minecraft/item/AxeItem
 c	at	net/minecraft/nbt/TagList
 c	au	net/minecraft/nbt/TagLong
+c	av	net/minecraft/nbt/TagUtils
+	m	(Lan;Ljava/io/File;)V	b	toFileOverwrite
+		c	Edit an existing file with the contents of the CompoundTag.
+		p	0	an	tag
+		p	1	file	file
+	m	(Ljava/io/DataInput;)Lan;	a	stream
+		c	Load a CompoundTag from a DataInput.
+		p	0	dataInput	input
+	m	(Lan;)[B	a	toBytes
+		p	0	an	tag
+	m	([B)Lan;	a	fromBytes
+		p	0	arr	bytes
+	m	(Lan;Ljava/io/File;)V	a	toFile
+		c	Create a new file with the contents of the tag. Replaces an existing file completely!
+		p	1	file	file
+		p	0	an	tag
+	m	(Lan;Ljava/io/DataOutput;)V	a	stream
+		p	1	dataOutput	output
+		p	0	an	tag
+	m	(Ljava/io/InputStream;)Lan;	a	fromStream
+		p	0	inputStream	stream
+	m	(Ljava/io/File;)Lan;	a	fromFile
+		c	Create a CompoundTag from a file.
+		p	0	file	file
+	m	(Lan;Ljava/io/OutputStream;)V	a	toStream
+		p	1	outputStream	stream
+		p	0	an	tag
 c	rg	net/minecraft/item/Item
 	f	Lrg;	s	WOOD_SHOVEL
 	f	Lrg;	u	WOOD_AXE
@@ -141,9 +176,45 @@ c	ay	net/minecraft/nbt/Tag
 	m	(BLjava/lang/String;)Lay;	a	fromByte
 		p	0	byte1	type
 		p	1	string	data
+	m	(Lay;Ljava/io/DataOutput;)V	a	write
 	m	()B	a	toByte
 	m	(B)Ljava/lang/String;	a	fromByte
+	m	(Ljava/io/DataInput;)Lay;	b	read
+c	az	net/minecraft/net/IPacketHandler
+	m	(Ldb;)V	a	a
+		p	1	db	packet
+	m	(Ldc;)V	a	a
+		p	1	dc	func
+	m	()Ljava/net/SocketAddress;	c	getAddress
 c	rp	net/minecraft/item/PickaxeItem
+c	ba	net/minecraft/net/LocalPacketHandler
+	c	This handles packets from the same client; when you create a new world and play in it,\nit creates a new "logical server," which this handles.
+	f	Ljava/net/SocketAddress;	a	address
+	f	Ljava/util/List;	b	packetStack
+	m	(Ldc;)V	<init>	<init>
+		p	1	dc	handler
+	f	Z	e	flag
+	m	(Ldb;)V	b	handlePacket
+		p	1	db	packet
+c	bb	net/minecraft/net/PacketHandler
+	f	Ljava/net/Socket;	i	socket
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	b	writingPackets
+	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;)V	<init>	<init>
+		p	1	socket	socket
+		p	2	string	name
+		p	3	dc	handler
+	f	Ljava/security/PrivateKey;	A	key
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	a	readingPackets
+	f	Ljava/lang/Thread;	t	writeWorker
+	f	Ljavax/crypto/SecretKey;	z	secret
+	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;Ljava/security/PrivateKey;)V	<init>	<init>
+		p	1	socket	socket
+		p	2	string	name
+		p	3	dc	handler
+		p	4	privateKey	key
+	f	Ljava/lang/Thread;	u	readWorker
+c	bc	net/minecraft/net/ReadWorkerThread
+c	bd	net/minecraft/net/WriteWorkerThread
 c	jm	net/minecraft/entity/Entity
 	m	(Ljd;I)Z	a	damage
 	m	(Lan;)V	d	toTag
@@ -215,8 +286,9 @@ c	g	net/minecraft/crash/CallableArguments
 	m	(La;)V	<init>	<init>
 		p	1		crashReport
 	m	()Ljava/lang/Object;	call	call
-c	h	net/minecraft/util/IntConstants
-c	j	net/minecraft/util/Vector3i
+c	h	net/minecraft/util/math/IntMagics2
+c	i	net/minecraft/util/math/IntMagics
+c	j	net/minecraft/util/math/Vector3i
 	c	Used for positioning blocks. 
 	m	(III)F	e	dot
 		c	Perform the dot product on the specified x, y, and z coordinates.
@@ -245,7 +317,7 @@ c	j	net/minecraft/util/Vector3i
 		c	idk wtf this does
 		p	1		other
 	f	I	c	z
-c	k	net/minecraft/util/CrashReportException
+c	k	net/minecraft/util/error/CrashReportException
 	m	(La;)V	<init>	<init>
 		p	1	a	report
 	m	()Ljava/lang/Throwable;	getCause	getCause
@@ -343,3 +415,8 @@ c	w	net/minecraft/command/CommandHelp
 		p	1	r	executor
 c	x	net/minecraft/command/CommandKill
 c	y	net/minecraft/command/CommandSeed
+c	db	net/minecraft/net/Packet
+	m	(Ldc;)V	a	process
+c	dc	net/minecraft/net/NetPlayHandler
+	c	TODO: is this server or client? i dont wanna know tbh
+	m	(Ldb;)V	a	handle
