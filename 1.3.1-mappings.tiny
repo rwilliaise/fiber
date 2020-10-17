@@ -117,6 +117,8 @@ c	ig	net/minecraft/util/math/MathUtils
 	m	(F)I	d	floor
 		p	0	float1	val
 c	qo	net/minecraft/item/GroupSearch
+c	ih	net/minecraft/net/packet/PacketCounter
+	m	(IJ)V	a	add
 c	qp	net/minecraft/item/GroupFood
 c	qq	net/minecraft/item/GroupTools
 c	aa	net/minecraft/command/CommandTime
@@ -202,6 +204,9 @@ c	an	net/minecraft/nbt/TagCompound
 	m	(Ljava/lang/String;)B	c	getByte
 	m	(Ljava/lang/String;Z)V	a	set
 	m	(Ljava/lang/String;)Z	n	getBoolean
+c	iw	net/minecraft/inventory/Inventory
+	m	(I)Lri;	a	get
+		p	1	integer	index
 c	ao	net/minecraft/nbt/TagDouble
 	f	D	a	value
 c	ap	net/minecraft/nbt/TagEnd
@@ -581,6 +586,8 @@ c	br	net/minecraft/net/packet/ChunkTilesUpdatePacket
 	f	I	b	y
 	f	I	a	x
 	f	I	d	z
+c	bt	net/minecraft/net/packet/ClientInfoPacket
+c	bu	net/minecraft/net/packet/ProtocolPacket
 c	kb	net/minecraft/util/PropertyDelegate
 	c	Seamlessly store data between client and server.
 	m	(I)B	a	getByte
@@ -691,6 +698,8 @@ c	g	net/minecraft/crash/CallableArguments
 		p	1		crashReport
 	m	()Ljava/lang/Object;	call	call
 c	h	net/minecraft/util/math/Direction
+c	cl	net/minecraft/net/packet/UseEntityPacket
+	c	Sent when an entity is right-clicked on.\n\nClient-side only.
 c	i	net/minecraft/util/math/Facing
 c	cm	net/minecraft/net/packet/KeepAlivePacket
 c	j	net/minecraft/util/math/Vector3i
@@ -779,6 +788,7 @@ c	o	net/minecraft/command/Commands
 	m	([Ljava/lang/String;)[Ljava/lang/String;	a	parseArgs
 		p	0		args
 	f	Ljava/util/Set;	b	commands
+c	cs	net/minecraft/net/packet/LoginPacket
 c	p	net/minecraft/command/ICommand
 	m	(Lr;)Z	b	canExecute
 	m	(Lr;)Ljava/lang/String;	a	getUsage
@@ -809,61 +819,91 @@ c	r	net/minecraft/command/IExecutor
 c	s	net/minecraft/command/CommandDefaultGamemode
 c	t	net/minecraft/command/CommandExperience
 	m	(Ljava/lang/String;)Lof;	a	getPlayer
+c	cx	net/minecraft/net/packet/FlyPacket
 c	u	net/minecraft/command/CommandGamemode
+c	cy	net/minecraft/net/packet/PlayerPositionPacket
 c	v	net/minecraft/command/CommandGive
 	m	(Ljava/lang/String;)Lof;	a	getPlayer
 		p	1		name
+c	cz	net/minecraft/net/packet/PlayerRotatePositionPacket
 c	w	net/minecraft/command/CommandHelp
 	m	()Ljava/util/Map;	c	getCommandMap
 	m	(Lr;)Ljava/util/List;	d	getSortedCommands
 		p	1		executor
 c	x	net/minecraft/command/CommandKill
 c	y	net/minecraft/command/CommandSeed
+c	da	net/minecraft/net/packet/PlayerRotatePacket
 c	db	net/minecraft/net/packet/Packet
-	m	(IZZLjava/lang/Class;)V	a	register
-		p	0		id
-		p	3		type
+	c	Packets are used to send information between client and server. Gets\nprocessed and used by NetworkHandlers.\n\n@see NetworkHandler\n@see ServerNetworkHandler
+	f	Ljava/util/Set;	c	clientPackets
+		c	Packets that can be sent from the client
 	m	(Ljava/io/DataInputStream;)Lan;	d	readTag
 		p	0	dataInputStream	in
+	m	(Ljava/io/DataInputStream;)V	a	read
+		p	1	dataInputStream	in
+	m	(Ldb;Ljava/io/DataOutputStream;)V	a	write
+		p	0	db	packet
+		p	1	dataOutputStream	out
+	m	(Ljava/io/DataInputStream;Z)Ldb;	a	read
+		p	0	dataInputStream	in
+		p	1	boolean2	client
+	m	(Ljava/io/DataOutputStream;[B)V	a	write
+		p	0	dataOutputStream	out
+		p	1	arr	arr
+	m	(I)Ldb;	d	get
+		p	0	integer	id
+	m	(Ljava/io/DataInputStream;I)Ljava/lang/String;	a	fromStream
+		p	0	dataInputStream	in
+		p	1	integer	val
+	m	()I	k	get
+	f	J	n	readPackets
+		c	Used to track how many packets have been read from
+	f	J	p	writtenPackets
+		c	Tracks the total amount of packets that have been written to
+	f	Ljava/util/Set;	b	serverPackets
+		c	Packets that can be sent from the server
+	m	(Lri;Ljava/io/DataOutputStream;)V	a	write
+		p	0	ri	stack
+		p	1	dataOutputStream	out
+	m	(IZZLjava/lang/Class;)V	a	register
+		p	2	boolean3	client
+		p	1	boolean2	server
+		p	0		id
+		p	3		type
 	m	(Lan;Ljava/io/DataOutputStream;)V	a	write
 		p	1	dataOutputStream	out
 		p	0	an	tag
-	m	(Ljava/io/DataInputStream;)V	a	read
-		p	1	dataInputStream	in
 	m	(Ldc;)V	a	process
+		c	Process and handle the packet
 		p	1		handler
+	f	Z	r	chunkData
+		c	Only here for the ChunkDataPacket for some reason.
+	m	(Ldb;)Z	a	equals
+		p	1	db	other
 	m	(Ljava/lang/String;Ljava/io/DataOutputStream;)V	a	write
 		p	1	dataOutputStream	out
 		p	0	string	val
 	m	()I	a	size
-	f	Z	r	isEncrypted
-	m	(Ldb;Ljava/io/DataOutputStream;)V	a	write
-		p	0	db	packet
-		p	1	dataOutputStream	out
-	m	(Ljava/io/DataInputStream;Z)Ldb;	a	a
-		p	0	dataInputStream	in
-	m	(Ljava/io/DataOutputStream;[B)V	a	write
-		p	0	dataOutputStream	out
-		p	1	arr	arr
+		c	Get the size of the packet for reading
 	m	(Ljava/io/DataInputStream;)Lri;	c	readStack
 		p	0	dataInputStream	in
-	m	(I)Ldb;	d	get
-		p	0	integer	id
 	f	Ljava/util/Map;	a	classMap
-	m	(Ljava/io/DataInputStream;I)Ljava/lang/String;	a	fromStream
-	m	()I	k	get
+		c	Packets mapped to their respective classes
 	f	Lib;	l	idMap
+		c	Packets mapped to their respective ids
 	f	J	m	time
-	f	J	q	size
+	f	J	o	readSize
+		c	Tracks the total size of the packets that have been read
+	f	J	q	writtenSize
+		c	Tracks the total size of the packets that have been written to
 	m	(Ljava/io/DataInputStream;)[B	b	readByteArray
 		p	0	dataInputStream	in
-	m	(Lri;Ljava/io/DataOutputStream;)V	a	write
-		p	0	ri	stack
-		p	1	dataOutputStream	out
 	m	(Ljava/io/DataOutputStream;)V	a	write
 		p	1	dataOutputStream	out
+	m	()Z	e	canSend
+		c	Gets the usability for a packet. A packet can be sent if it's not the\nabstract Packet superclass.\n\n@return whether or not the packet can be sent over the internet
 c	dc	net/minecraft/net/NetworkHandler
-	c	TODO: is this server or client? i dont wanna know tbh
+	c	
 	m	(Lbj;)V	a	handle
 	m	(Lcf;)V	a	handle
 	m	(Leg;)V	a	handle
@@ -883,13 +923,23 @@ c	dc	net/minecraft/net/NetworkHandler
 	m	(Lcn;)V	a	handle
 	m	(Lbm;)V	a	handle
 	m	(Ldn;)V	a	handle
+		p	1	dn	packet
 	m	(Lbn;)V	a	handle
+c	de	net/minecraft/net/packet/MineBlockPacket
+c	dk	net/minecraft/net/packet/RespawnPacket
+c	dn	net/minecraft/net/packet/SwitchPacket
+	c	It is unclear what this packet does. I need more documentation.
+	f	I	a	id
 c	acn	net/minecraft/block/Material
 	f	Lacn;	d	WOOD
 	f	Lacn;	e	STONE
 	f	Lacn;	q	GLASS
 	f	Lacn;	h	LAVA
 	f	Lacn;	g	WATER
+c	dr	net/minecraft/net/packet/OpenInventoryPacket
+c	dt	net/minecraft/net/packet/UpdateHealthPacket
+c	dv	net/minecraft/net/packet/SpawnPositionPacket
+c	dw	net/minecraft/net/packet/TimeUpdatePacket
 c	net/minecraft/server/MinecraftServer	net/minecraft/server/MinecraftServer
 	m	()Lq;	D	getCommandParser
 	m	()Lnet/minecraft/server/MinecraftServer;	C	getInstance
@@ -902,6 +952,7 @@ c	uu	uu
 		p	3		x
 		p	4		y
 		p	5		z
+c	eg	net/minecraft/net/packet/PlacePacket
 c	ei	net/minecraft/net/server/BanList
 c	el	net/minecraft/util/LoggerHandler
 	f	Ljava/util/logging/Logger;	a	LOGGER
@@ -955,7 +1006,40 @@ c	ni	net/minecraft/entity/EntityItem
 	f	Lri;	a	stack
 c	fk	net/minecraft/command/CommandSaveAll
 c	aev	net/minecraft/block/BlockBed
+c	oe	net/minecraft/inventory/PlayerInventory
+	m	(Lrg;I)V	a	a
+		p	1	rg	item
+	m	()I	i	firstEmptySlot
+		c	Get the first slot in the inventory that is empty
+	m	()I	h	getHotbarSize
+	m	(II)I	c	findFirstOf
+		p	2	integer2	damage
+		p	1	integer1	id
+	f	I	c	currentHotbarSlot
+		c	Currently selected hotbar slot 
+	f	Lof;	d	player
+	m	(I)V	c	moveSelected
+		c	Move the currently selected hotbar slot by x amount of slots. Loops over\nwhen it exceeds 9.
+		p	1	integer	x
+			c	amount of slots to move over by
+	m	(IIZZ)V	a	setCurrentItem
+		p	2	integer2	damage
+		p	1	integer1	id
+		p	4	boolean4	empty
+		p	3	boolean3	checkDamage
+	m	(Lof;)V	<init>	<init>
+		p	1	of	player
+	m	(I)I	h	findFirstOf
+		p	1	integer	id
+	m	(Lri;)I	d	findFirstOf
+		p	1	ri	stack
+	f	[Lri;	a	playerInventory
+	f	[Lri;	b	craftingInventory
+	m	()Lri;	g	getSelectedHotbarItem
+		c	Get the currently selected hotbar item.\n\n@return the currently selected hotbar item
+	f	Lri;	f	selectedItem
 c	of	net/minecraft/entity/EntityPlayer
+	f	Loe;	by	inventory
 	f	Ljava/lang/String;	bJ	name
 c	afj	net/minecraft/block/BlockDeadBush
 c	afk	net/minecraft/block/BlockDetectorRail
