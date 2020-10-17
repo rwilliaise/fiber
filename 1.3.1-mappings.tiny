@@ -422,8 +422,11 @@ c	w	net/minecraft/command/CommandHelp
 c	x	net/minecraft/command/CommandKill
 c	y	net/minecraft/command/CommandSeed
 c	db	net/minecraft/net/Packet
+	f	Ljava/util/Map;	a	classMap
 	m	(IZZLjava/lang/Class;)V	a	a
 		p	0	integer	id
+		p	3	class4	type
+	f	J	m	time
 	m	(Ldc;)V	a	process
 c	dc	net/minecraft/net/NetPlayHandler
 	c	TODO: is this server or client? i dont wanna know tbh
