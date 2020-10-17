@@ -1,14 +1,21 @@
 tiny	2	0	intermediary	named
+c	pt	net/minecraft/item/ArmorMaterial
+c	agj	net/minecraft/block/BlockLeaves
+c	ago	net/minecraft/block/BlockFlowingFluid
+c	agn	BlockFluid
 c	py	net/minecraft/item/BowItem
+c	agq	net/minecraft/block/BlockLockedChest
+c	agp	net/minecraft/block/BlockStationaryFluid
+c	agv	net/minecraft/block/BlockNote
 c	qc	net/minecraft/item/CoalItem
 c	qf	net/minecraft/item/ItemGroup
 	m	(Ljava/util/List;)V	a	getItems
-		p	1	list	list
+		p	1		list
 	m	()Ljava/lang/String;	b	getName
 	f	Lqf;	f	MISC
-	m	()Lrg;	d	getIcon
-	f	Lqf;	d	REDSTONE
 	f	[Lqf;	a	GROUPS
+	f	Lqf;	d	REDSTONE
+	m	()Lrg;	d	getIcon
 	f	Lqf;	b	BUILDING_BLOCKS
 	f	Lqf;	l	MATERIALS
 	f	Lqf;	j	COMBAT
@@ -17,45 +24,43 @@ c	qf	net/minecraft/item/ItemGroup
 	m	()I	k	getSide
 	m	()I	a	getId
 	m	()Ljava/lang/String;	c	getTranslatedName
+	m	(ILjava/lang/String;)V	<init>	<init>
+		p	1		id
+		p	2		name
 	m	()I	e	getIconId
 		c	Returns the id of the item to be displayed as the icon.
-	m	(ILjava/lang/String;)V	<init>	<init>
-		p	1	integer	id
-		p	2	string	name
 	f	Lqf;	e	TRANSPORTATION
 	f	Lqf;	c	DECORATIONS
 	m	()Z	l	onTop
 	f	Lqf;	m	INVENTORY
-	f	I	n	id
 	f	Lqf;	k	BREWING
+	f	I	n	id
 	f	Lqf;	i	TOOLS
-	m	(Ljava/lang/String;)Lqf;	a	texture
-		p	1	string	path
 	f	Lqf;	g	SEARCH
+	m	(Ljava/lang/String;)Lqf;	a	texture
+		p	1		path
 	f	Ljava/lang/String;	p	texture
 c	qg	net/minecraft/item/GroupBuilding
 c	qh	net/minecraft/item/GroupBrewing
 c	qi	net/minecraft/item/GroupMaterials
-c	net/minecraft/server/MinecraftServer	net/minecraft/server/MinecraftServer
-	m	()Lq;	D	getCommandParser
-	m	()Lnet/minecraft/server/MinecraftServer;	C	getInstance
-	m	()Let;	ab	getPlayers
-	f	Ljava/util/logging/Logger;	a	LOGGER
 c	qj	net/minecraft/item/GroupInventory
+c	ahb	net/minecraft/block/BlockOre
 c	qk	net/minecraft/item/GroupDecorations
+c	aha	net/minecraft/block/BlockObsidian
 c	ql	net/minecraft/item/GroupRedstone
+c	ahd	net/minecraft/block/BlockPressurePlate
 c	qm	net/minecraft/item/GroupTransportation
 c	qn	net/minecraft/item/GroupMisc
 c	qo	net/minecraft/item/GroupSearch
 c	qp	net/minecraft/item/GroupFood
-c	qq	net/minecraft/item/GroupTools
 c	aa	net/minecraft/command/CommandTime
 	m	(Lr;I)V	a	parseArgument
-c	ab	net/minecraft/command/CommandToggleDownfall
+c	qq	net/minecraft/item/GroupTools
 c	qr	net/minecraft/item/GroupCombat
+c	ab	net/minecraft/command/CommandToggleDownfall
 c	ac	net/minecraft/util/error/TranslatedException
-	f	[Ljava/lang/Object;	a	objects
 	m	()[Ljava/lang/Object;	a	getObjects
+	f	[Ljava/lang/Object;	a	objects
 	m	(Ljava/lang/String;[Ljava/lang/Object;)V	<init>	<init>
 		p	2		objects
 		p	1		cause
@@ -63,245 +68,432 @@ c	ad	net/minecraft/util/error/FormattedException
 c	ae	net/minecraft/util/error/SyntaxException
 c	af	net/minecraft/util/error/PlayerNotFoundException
 c	ag	net/minecraft/util/error/NotFoundException
-c	el	net/minecraft/util/LoggerHandler
-	f	Ljava/util/logging/Logger;	a	LOGGER
-	m	()V	a	logToFile
-		c	Save all logs from current session to file
 c	ah	net/minecraft/util/error/SyntaxedException
-c	em	net/minecraft/util/LoggerFormat
-	c	Used to format logs for client and server.
-	m	(Ljava/util/logging/LogRecord;)Ljava/lang/String;	format	format
-		p	1	logRecord	record
-	f	Ljava/text/SimpleDateFormat;	a	format
+c	ahp	net/minecraft/block/BlockSand
+	m	(II)V	<init>	<init>
+		p	1	integer1	id
+	m	(Luo;III)V	l	l
+		p	4	integer4	z
+		p	3	integer3	y
+		p	2	integer2	x
+		p	1	uo	world
+	m	(Luo;III)Z	e_	e_
+		p	0	uo	world
+		p	2	integer3	y
+		p	1	integer2	x
+		p	3	integer4	z
 c	aj	net/minecraft/util/I18nHelper
 	m	(Ljava/lang/String;)Ljava/lang/String;	a	getRaw
-		p	0	string	rawKey
+		p	0		rawKey
 	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	a	getf
-		p	1	arr	formats
-		p	0	string	key
+		p	1		formats
+		p	0		key
 	f	Lak;	a	I18N
 c	ak	net/minecraft/util/I18n
 	c	Translates keys into readable text.
 	m	()Ljava/util/TreeMap;	b	getKeyMap
-	m	(Ljava/lang/String;)Ljava/lang/String;	b	getRaw
-		p	1	string	key
 	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	a	getf
-		p	2	arr	formats
-		p	1	string	key
+		p	2		formats
+		p	1		key
+	m	(Ljava/lang/String;)Ljava/lang/String;	b	getRaw
+		p	1		key
 	m	(Ljava/lang/String;)Ljava/lang/String;	c	get
-		p	1	string	name
+		p	1		name
 	f	Ljava/lang/String;	d	locale
 	f	Ljava/util/Properties;	b	config
 	m	(Ljava/util/Properties;Ljava/lang/String;)V	a	loadFile
-		p	1	properties	props
-		p	2	string	locale
+		p	1		props
+		p	2		locale
 	f	Z	e	loaded
 	m	()Z	d	isLoaded
-	m	(Ljava/lang/String;)V	<init>	<init>
-		p	1	string	locale
 	m	()V	e	load
-	m	(Ljava/lang/String;)V	a	loadLocale
-		p	1	string	locale
+	m	(Ljava/lang/String;)V	<init>	<init>
+		p	1		locale
 	m	(Ljava/lang/String;)Z	e	renderBackwards
-		p	0	string	key
+		p	0		key
+	m	(Ljava/lang/String;)V	a	loadLocale
+		p	1		locale
 	m	()Ljava/lang/String;	c	getLocale
-	f	Ljava/util/TreeMap;	c	localeMap
-	m	()Lak;	a	getInstance
 	f	Lak;	a	INSTANCE
+	m	()Lak;	a	getInstance
+	f	Ljava/util/TreeMap;	c	localeMap
+c	ahq	BlockSapling
 c	al	net/minecraft/nbt/TagByteArray
 c	am	net/minecraft/nbt/TagByte
 c	an	net/minecraft/nbt/TagCompound
-c	es	net/minecraft/crash/CallableServerInfo
-	f	Lnet/minecraft/server/MinecraftServer;	a	server
-	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>	<init>
-		p	1	minecraftServer	server
+	m	(Ljava/lang/String;)Lat;	m	getList
+	m	(Ljava/lang/String;)Z	b	has
+	m	(Ljava/lang/String;S)V	a	set
+	m	(Ljava/lang/String;B)V	a	set
+	m	(Ljava/lang/String;)Lan;	l	getTag
+	m	(Ljava/lang/String;F)V	a	set
+	m	(Ljava/lang/String;)B	c	getByte
+	m	(Ljava/lang/String;)S	d	getShort
+	m	(Ljava/lang/String;Lay;)V	a	set
+	m	(Ljava/lang/String;)F	g	getFloat
+	m	(Ljava/lang/String;Z)V	a	set
+	m	(Ljava/lang/String;)Z	n	getBoolean
 c	ao	net/minecraft/nbt/TagDouble
-c	et	et
-	m	(Ljava/lang/String;)Lgt;	f	get
+	f	D	a	value
 c	ap	net/minecraft/nbt/TagEnd
+c	aq	net/minecraft/nbt/TagFloat
+	f	F	a	value
 c	net/minecraft/client/Minecraft	net/minecraft/client/Minecraft
 	m	()Lnet/minecraft/client/Minecraft;	x	getInstance
-c	aq	net/minecraft/nbt/TagFloat
-c	ev	net/minecraft/util/ServerProperties
-	c	Helper class to aid with creating and loading properties for server files.
-	m	()Ljava/io/File;	c	getFile
-	f	Ljava/io/File;	c	file
-	f	Ljava/util/Properties;	b	props
-	m	(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;	a	getString
-		c	Get a string from the properties file, or set it to a default if it wasn't found
-		p	2	string2	def
-			c	Default string to set if key does not exist
-		p	1	string1	key
-			c	Key to get from the properties file
-	m	(Ljava/io/File;)V	<init>	<init>
-		p	1	file	file
-	m	(Ljava/lang/String;Z)Z	a	getBoolean
-	m	(Ljava/lang/String;I)I	a	getInt
-		p	1	string	key
-		p	2	integer	def
-	m	()V	b	generate
-	m	()V	a	generateProperties
-	f	Ljava/util/logging/Logger;	a	LOGGER
-c	rc	net/minecraft/item/FoodItem
+c	ahw	net/minecraft/block/BlockSpawner
 c	ar	net/minecraft/nbt/TagIntArray
+c	rc	net/minecraft/item/FoodItem
 c	as	net/minecraft/nbt/TagInt
-c	re	net/minecraft/item/AxeItem
 c	at	net/minecraft/nbt/TagList
+	m	(I)Lay;	b	get
+c	re	net/minecraft/item/AxeItem
 c	au	net/minecraft/nbt/TagLong
-c	av	net/minecraft/nbt/TagUtils
-	m	(Lan;Ljava/io/File;)V	b	toFileOverwrite
-		c	Edit an existing file with the contents of the CompoundTag.
-		p	0	an	tag
-		p	1	file	file
-	m	(Ljava/io/DataInput;)Lan;	a	stream
-		c	Load a CompoundTag from a DataInput.
-		p	0	dataInput	input
-	m	(Lan;)[B	a	toBytes
-		p	0	an	tag
-	m	([B)Lan;	a	fromBytes
-		p	0	arr	bytes
-	m	(Lan;Ljava/io/File;)V	a	toFile
-		c	Create a new file with the contents of the tag. Replaces an existing file completely!
-		p	1	file	file
-		p	0	an	tag
-	m	(Lan;Ljava/io/DataOutput;)V	a	stream
-		p	1	dataOutput	output
-		p	0	an	tag
-	m	(Ljava/io/InputStream;)Lan;	a	fromStream
-		p	0	inputStream	stream
-	m	(Ljava/io/File;)Lan;	a	fromFile
-		c	Create a CompoundTag from a file.
-		p	0	file	file
-	m	(Lan;Ljava/io/OutputStream;)V	a	toStream
-		p	1	outputStream	stream
-		p	0	an	tag
 c	rg	net/minecraft/item/Item
 	f	Lrg;	s	WOOD_SHOVEL
 	f	Lrg;	u	WOOD_AXE
+	f	Lrg;	ap	FLINT
 	f	Lrg;	o	IRON_INGOT
 	f	Lrg;	q	IRON_SWORD
 	m	(I)V	<init>	<init>
-		p	1	integer	id
+		p	1		id
 	m	()Lqf;	w	getGroup
 	f	Lrg;	f	IRON_SHOVEL
-	f	Lrg;	l	ARROW
 	f	[Lrg;	e	ITEMS
+	f	Lrg;	l	ARROW
 	f	Lrg;	n	DIAMOND
-	f	I	bT	id
 	f	Lrg;	h	IRON_AXE
+	f	I	bT	id
 	f	Lrg;	j	APPLE
-	m	(Ljava/lang/String;)Lrg;	b	setName
 	f	Ljava/util/Random;	d	RANDOM
+	m	(Ljava/lang/String;)Lrg;	b	setName
 	f	Lrg;	t	WOOD_PICKAXE
 	f	Lrg;	p	GOLD_INGOT
 	f	Lrg;	r	WOOD_SWORD
-	m	(I)Lrg;	d	setStackSize
-		p	1	integer	maxStackSize
 	f	Lrg;	k	BOW
+	m	(I)Lrg;	d	setStackSize
+		p	1		maxStackSize
 	f	Lrg;	m	COAL
 	f	Lrg;	bI	RECORD_13
-	f	I	bU	maxStackSize
 	f	Lrg;	g	IRON_PICKAXE
+	f	I	bU	maxStackSize
 	f	Lrg;	i	FLINT_AND_STEEL
+c	av	net/minecraft/nbt/TagUtils
+	m	(Ljava/io/DataInput;)Lan;	a	stream
+		c	Load a CompoundTag from a DataInput.
+		p	0		input
+	m	(Lan;Ljava/io/File;)V	b	toFileOverwrite
+		c	Edit an existing file with the contents of the CompoundTag.
+		p	0		tag
+		p	1		file
+	m	(Lan;)[B	a	toBytes
+		p	0		tag
+	m	([B)Lan;	a	fromBytes
+		p	0		bytes
+	m	(Ljava/io/InputStream;)Lan;	a	fromStream
+		p	0		stream
+	m	(Lan;Ljava/io/DataOutput;)V	a	stream
+		p	1		output
+		p	0		tag
+	m	(Lan;Ljava/io/File;)V	a	toFile
+		c	Create a new file with the contents of the tag. Replaces an existing file completely!
+		p	1		file
+		p	0		tag
+	m	(Ljava/io/File;)Lan;	a	fromFile
+		c	Create a CompoundTag from a file.
+		p	0		file
+	m	(Lan;Ljava/io/OutputStream;)V	a	toStream
+		p	1		stream
+		p	0		tag
+c	rh	net/minecraft/item/ToolMaterial
 c	aw	net/minecraft/nbt/TagShort
+c	ri	net/minecraft/item/ItemStack
+	m	(Lan;)Lan;	b	toTag
+		p	1	an	tag
+	m	(Lrg;I)V	<init>	<init>
+		p	1	rg	item
+		p	2	integer	count
+	m	(I)V	b	setDamage
+		p	1	integer	dmg
+	f	I	c	id
+	m	(III)V	<init>	<init>
+		p	3	integer3	damage
+		p	2	integer2	count
+		p	1	integer1	id
+	m	(Lan;)Lri;	a	createFromTag
+		p	0	an	tag
+	f	I	a	count
+	m	(Lan;)V	c	fromTag
+		p	1	an	tag
+	m	(Lrg;II)V	<init>	<init>
+		p	2	integer2	count
+		p	1	rg	item
+		p	3	integer3	damage
+	f	Lan;	d	tag
+	m	(Lrg;)V	<init>	<init>
+		p	1	rg	item
+	f	I	e	damage
 c	ax	net/minecraft/nbt/TagString
+c	aia	net/minecraft/block/BlockStone
 c	ay	net/minecraft/nbt/Tag
 	m	(BLjava/lang/String;)Lay;	a	fromByte
-		p	0	byte1	type
-		p	1	string	data
+		p	0		type
+		p	1		data
 	m	(Lay;Ljava/io/DataOutput;)V	a	write
 	m	()B	a	toByte
 	m	(B)Ljava/lang/String;	a	fromByte
 	m	(Ljava/io/DataInput;)Lay;	b	read
 c	az	net/minecraft/net/IPacketHandler
-	m	()I	e	getEncryptionSize
-	m	()V	b	check
 	m	(Ldb;)V	a	acceptPacket
-		p	1	db	packet
-	m	()V	a	interruptWorkers
+		p	1		packet
+	m	()V	b	check
+	m	()I	e	getEncryptionSize
 	m	(Ldc;)V	a	setHandler
-		p	1	dc	func
+		p	1		func
+	m	()V	a	interruptWorkers
 	m	()V	f	interrupt
-	m	(Ljava/lang/String;[Ljava/lang/Object;)V	a	forceDisconnect
-		p	1	string	key
-		p	2	arr	formats
 	m	()Ljava/net/SocketAddress;	c	getAddress
+	m	(Ljava/lang/String;[Ljava/lang/Object;)V	a	forceDisconnect
+		p	1		key
+		p	2		formats
+c	aig	net/minecraft/block/GlassMaterial
 c	rp	net/minecraft/item/PickaxeItem
+c	aif	net/minecraft/block/Block
+	f	Laif;	bb	NETHERRACK
+	m	()Ljava/lang/String;	a	getName
+	f	Laif;	D	LAVA
+	f	Laif;	z	BEDROCK
+	f	Laif;	aP	UNLIT_REDSTONE_TORCH
+	f	D	cl	maxY
+	f	Laif;	v	DIRT
+	f	D	ch	minX
+	f	Laif;	I	COAL_ORE
+	f	Laii;	g	GRASS_MATERIAL
+	m	(Ljava/lang/String;)Laif;	b	setName
+	f	Laii;	k	CLOTH_MATERIAL
+	f	Laif;	aL	IRON_DOOR
+	f	Laii;	cn	material
+	m	(ILjava/util/Random;I)I	a	getDrop
+	f	I	bZ	subId
+	f	Laif;	C	FLOWING_LAVA
+	f	Laif;	y	SAPLING
+	m	(Luo;IIII)V	a	a
+		p	1	uo	world
+	f	D	ci	minY
+	f	Laif;	ap	OBSIDIAN
+	f	Laif;	at	SPAWNER
+	f	Laif;	bj	LOCKED_CHEST
+	f	Laii;	f	DIRT_MATERIAL
+	f	Laif;	aK	STONE_PRESSURE_PLATE
+	f	Laif;	H	IRON_ORE
+	f	Laii;	j	GLASS_MATERIAL
+	f	D	cm	maxZ
+	f	Laif;	aO	LIT_REDSTONE_ORE
+	f	Ljava/lang/String;	b	name
+	f	Laif;	B	WATER
+	f	I	ca	id
+	m	(Luo;III)V	g	g
+		p	4	integer4	z
+		p	3	integer3	y
+		p	2	integer2	x
+		p	1	uo	world
+	f	Laif;	F	GRAVEL
+	f	Laif;	x	PLANKS
+	f	D	cj	minZ
+	f	Laga;	u	GRASS
+	f	Laif;	t	STONE
+	m	()Ljava/lang/String;	t	getTranslatedName
+	f	Laif;	G	GOLD_ORE
+	f	Laii;	e	WOOD_MATERIAL
+	f	Laif;	aJ	LEVER
+	m	(Laii;)Laif;	a	material
+		p	1	aii	material
+	m	(FFFFFF)V	a	setBounds
+		p	6	float6	maxZ
+		p	5	float5	maxY
+		p	2	float2	minY
+		p	1	float1	minX
+		p	4	float4	maxX
+		p	3	float3	minZ
+	m	(Luo;IIILjava/util/Random;)V	b	b
+		p	1	uo	world
+	f	Laif;	aN	REDSTONE_ORE
+	f	Laif;	A	FLOWING_WATER
+	f	Laif;	bc	SOUL_SAND
+	f	Laif;	E	SAND
+	m	(Lqf;)Laif;	a	setGroup
+		p	1	qf	group
+	m	(F)Laif;	b	resistance
+	f	Lafx;	ar	FIRE
+	f	Laif;	w	COBBLESTONE
+	m	(ILacn;)V	<init>	<init>
+		p	1	integer	id
+	f	Laif;	aQ	LIT_REDSTONE_TORCH
+	f	[Laif;	m	BLOCKS
+	f	Laii;	l	SAND_MATERIAL
+	f	D	ck	maxX
+	m	(I)I	a	getSubId
+		p	1	integer	id
+	f	Laif;	aI	SIGN
+	f	Laif;	J	LOGS
+	f	Laii;	d	DUST_MATERIAL
+		c	Redstone dust material
+	m	(F)Laif;	c	hardness
+		p	1	float1	hardness
+	f	Lqf;	a	group
+	f	Laif;	aM	WOOD_PRESSURE_PLATE
+	f	Laii;	h	STONE_MATERIAL
 c	ba	net/minecraft/net/LocalPacketHandler
 	c	This handles packets from the same client; when you create a new world and play in it,\nit creates a new "logical server," which this handles.
 	f	Ljava/net/SocketAddress;	a	address
 	f	Ljava/util/List;	b	packetStack
 	m	(Ldc;)V	<init>	<init>
-		p	1	dc	handler
+		p	1		handler
 	f	Z	e	flag
 	m	(Ldb;)V	b	handlePacket
-		p	1	db	packet
+		p	1		packet
+c	aii	net/minecraft/block/Material
+	m	(Ljava/lang/String;FF)V	<init>	<init>
+		p	1	string	name
+	f	Ljava/lang/String;	a	name
 c	bb	net/minecraft/net/ClientPacketHandler
-	f	Z	m	flagged
 	m	()Ljava/net/Socket;	g	getSocket
+	f	Z	m	flagged
 	m	()V	j	read
 	f	[Ljava/lang/Object;	w	disconnectFormats
-	f	I	B	delay
-	f	Z	s	closed
 	f	Ljava/lang/Thread;	t	writeWorker
+	f	Z	s	closed
+	f	I	B	delay
 	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;Ljava/security/PrivateKey;)V	<init>	<init>
-		p	1	socket	socket
-		p	2	string	name
-		p	3	dc	handler
-		p	4	privateKey	key
+		p	1		socket
+		p	2		name
+		p	3		handler
+		p	4		key
 	f	Ljava/util/List;	q	encrypted
 	f	I	e	lastPacket
 	f	Ljava/io/DataOutputStream;	l	outStream
-	f	Ljava/util/List;	p	unencrypted
 	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;)V	<init>	<init>
-		p	1	socket	socket
-		p	2	string	name
-		p	3	dc	handler
+		p	1		socket
+		p	2		name
+		p	3		handler
+	f	Ljava/util/List;	p	unencrypted
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	a	readingPackets
 	f	Ljava/lang/String;	v	disconnectReason
-	f	Z	g	writing
 	f	Ljava/net/SocketAddress;	j	address
+	f	Z	g	writing
 	f	I	y	size
 	m	(Ldb;Z)Z	a	a
-		p	2	boolean2	encrypt
-		p	1	db	packet
-	m	()V	k	write
+		p	2		encrypt
+		p	1		packet
 	f	Ljava/net/Socket;	i	socket
-	m	(Z)Ldb;	a	pop
-		p	1	boolean1	encrypt
+	m	()V	k	write
 	f	Z	n	n
+	m	(Z)Ldb;	a	pop
+		p	1		encrypt
 	f	Ljava/security/PrivateKey;	A	key
-	f	Ldc;	r	netHandler
 	f	Ljava/lang/Thread;	u	readWorker
-	m	(Ljava/lang/Exception;)V	a	forceDisconect
-		p	1	exception	e
+	f	Ldc;	r	netHandler
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	b	writingPackets
+	m	(Ljava/lang/Exception;)V	a	forceDisconect
+		p	1		e
 	f	Ljavax/crypto/SecretKey;	z	secret
 	f	Z	f	reading
 	f	Ljava/io/DataInputStream;	k	inStream
+c	aih	net/minecraft/block/Sand
 c	bc	net/minecraft/net/ReadWorkerThread
 c	bd	net/minecraft/net/WriteWorkerThread
+c	jm	net/minecraft/entity/Entity
+	f	D	t	x
+	m	(Ljd;I)Z	a	damage
+	m	([D)Lat;	a	list
+	f	D	v	z
+	m	([F)Lat;	a	list
+	f	D	u	y
+	f	F	R	fallDistance
+	f	Z	E	onGround
+	m	()Z	ad	onFIre
+	m	()Ljava/lang/String;	ak	getName
+	m	(DDD)V	h	setMotion
+		p	5	double3	z
+		p	3	double2	y
+		p	1	double1	x
+	m	()I	ai	getAir
+	f	I	k	id
+	f	Ljava/util/Random;	Z	rand
+	f	F	A	rotationY
+	f	I	a	globalId
+	m	(Lan;)V	a	fromTag
+	m	(Lan;)V	b	toTag
+	f	I	c	fireTick
+	m	(Lan;)V	d	toRawTag
+		p	1		tag
+	f	F	z	rotationX
+	f	D	x	motionY
+	m	(Lan;)V	e	fromRawTag
+		p	1	an	tag
+	f	D	w	motionX
+	f	D	y	motionZ
 c	be	net/minecraft/net/InterruptThread
 	f	Lbb;	a	handler
 	m	(Lbb;)V	<init>	<init>
-		p	1	bb	handler
+		p	1		handler
 	m	()V	run	run
-c	jm	net/minecraft/entity/Entity
-	m	(Ljd;I)Z	a	damage
-	m	(Lan;)V	d	toTag
-		p	1	an	tag
 c	bf	net/minecraft/net/DisconnectThread
 	f	Lbb;	a	handler
 	m	(Lbb;)V	<init>	<init>
-		p	1	bb	handler
+		p	1		handler
 	m	()V	run	run
-c	fk	net/minecraft/command/CommandSaveAll
+c	aio	net/minecraft/block/BlockLogs
+c	ait	net/minecraft/block/BlockCobweb
 c	sa	net/minecraft/item/ShovelItem
-c	br	net/minecraft/net/ChunkTilesUpdatePacket
+c	aiv	net/minecraft/block/BlockPlanks
+c	br	net/minecraft/net/packet/ChunkTilesUpdatePacket
 	f	I	b	y
 	f	I	a	x
 	f	I	d	z
-c	of	net/minecraft/entity/EntityPlayer
+c	kb	net/minecraft/util/PropertyDelegate
+	c	Seamlessly store data between client and server.
+	m	(I)B	a	getByte
+		p	1	integer	id
+	m	(Ljava/util/List;Ljava/io/DataOutputStream;)V	a	toStream
+		p	1	dataOutputStream	stream
+		p	0	list	list
+	f	Ljava/util/HashMap;	a	classMap
+	m	(ILjava/lang/Object;)V	a	createProperty
+		p	2	object	value
+		p	1	integer	id
+	f	Ljava/util/Map;	b	propertyMap
+	m	(Ljava/io/DataInputStream;)Ljava/util/List;	a	fromStream
+		p	0	dataInputStream	stream
+	m	(I)I	c	getInt
+		p	1	integer	id
+	m	(ILjava/lang/Object;)V	b	setProperty
+		p	1	integer	id
+		p	2	object	value
+	m	(I)Lkc;	i	getProperty
+		p	1	integer	id
+	m	(Ljava/io/DataOutputStream;)V	a	fromStream
+		p	1	dataOutputStream	stream
+	m	(I)S	b	getShort
+		p	1	integer	id
+	m	(I)Ljava/lang/String;	e	getString
+		p	1	integer	id
+	m	()Ljava/util/List;	c	getProperties
+	m	()Ljava/util/List;	b	getNewProperties
+	m	()Z	a	hasNewProperties
+	m	(Ljava/io/DataOutputStream;Lkc;)V	a	toStream
+		p	0	dataOutputStream	stream
+		p	1	kc	prop
+	f	Z	c	newProps
+	f	Ljava/util/concurrent/locks/ReadWriteLock;	d	lock
+c	kc	net/minecraft/net/Property
+	m	(Z)V	a	setNew
+	m	(Ljava/lang/Object;)V	a	set
+	m	()Ljava/lang/Object;	b	getObject
+	f	Ljava/lang/Object;	c	object
+	m	(IILjava/lang/Object;)V	<init>	<init>
+		p	3	object	obj
+	m	()Z	d	isNew
+	m	()I	c	getType
 c	sm	net/minecraft/item/SwordItem
 c	a	net/minecraft/crash/CrashReport
 	c	CrashReport handles all reporting of crashes, and their saving to file.
@@ -314,23 +506,23 @@ c	a	net/minecraft/crash/CrashReport
 	m	(Ljava/lang/String;Ljava/lang/Throwable;)V	<init>	<init>
 		p	2		throwable
 		p	1		cause
-	f	Ljava/lang/Throwable;	b	throwable
 	m	()Ljava/lang/Throwable;	b	getThrowable
+	f	Ljava/lang/Throwable;	b	throwable
 	m	()V	g	putSpecifications
 		c	Add computer specifications to the CrashReport.
+	f	Ljava/io/File;	d	out
+	m	()Ljava/lang/String;	a	getCause
+	f	Ljava/lang/String;	a	cause
 	m	(Ljava/lang/String;Ljava/util/concurrent/Callable;)V	a	putInfo
 		p	2		object
 		p	1		name
-	f	Ljava/lang/String;	a	cause
-	m	()Ljava/lang/String;	a	getCause
-	f	Ljava/io/File;	d	out
 	m	()Ljava/io/File;	f	getFile
 	m	()Ljava/lang/String;	e	finalize
 	m	()Ljava/lang/String;	c	toString
+	m	()Ljava/lang/String;	d	printStackTrace
 	m	(Ljava/lang/String;Ljava/lang/Object;)V	a	putInfo
 		p	2		object
 		p	1		name
-	m	()Ljava/lang/String;	d	printStackTrace
 	m	(Ljava/lang/String;Ljava/lang/Throwable;)V	a	putInfo
 		p	2		throwable
 		p	1		name
@@ -348,9 +540,9 @@ c	c	net/minecraft/crash/CallableOSInfo
 	m	()Ljava/lang/Object;	call	call
 c	d	net/minecraft/crash/CallableJavaVersion
 	m	()Ljava/lang/Object;	call	call
-	f	La;	a	crashReport
 	m	(La;)V	<init>	<init>
 		p	1		crashReport
+	f	La;	a	crashReport
 c	e	net/minecraft/crash/CallableJVM
 	m	()Ljava/lang/Object;	call	call
 	f	La;	a	crashReport
@@ -375,12 +567,12 @@ c	j	net/minecraft/util/math/Vector3i
 		p	1		x
 		p	2		y
 		p	3		z
-	f	I	b	y
 	m	(III)V	<init>	<init>
 		c	Create a new Vector3i with specified x, y, and z components.
 		p	2		y
 		p	1		x
 		p	3		z
+	f	I	b	y
 	f	I	a	x
 	m	(III)V	b	set
 		p	1		x
@@ -399,84 +591,83 @@ c	j	net/minecraft/util/math/Vector3i
 	f	I	c	z
 c	k	net/minecraft/util/error/CrashReportException
 	m	(La;)V	<init>	<init>
-		p	1	a	report
+		p	1		report
 	m	()Ljava/lang/Throwable;	getCause	getCause
-	m	()La;	a	getCrashReport
 	f	La;	a	report
+	m	()La;	a	getCrashReport
 	m	()Ljava/lang/String;	getMessage	getMessage
 c	l	net/minecraft/util/FontHelper
 	c	Used to process text for use by the font renderer.
 	m	(C)Z	a	canRender
 		c	Check if a character is supported within the FontRenderer.
-		p	0	character	character
+		p	0		character
+	f	[C	b	SPECIAL_CHARACTERS
 	m	(Ljava/lang/String;)Ljava/lang/String;	a	processString
 		c	Remove all unsupported characters from a string
-		p	0	string	str
-	f	[C	b	SPECIAL_CHARACTERS
-	m	()Ljava/lang/String;	a	loadFont
+		p	0		str
 	f	Ljava/lang/String;	a	FONT
 		c	Every character that is supported inside the font renderer, packed into one string.
-c	gt	net/minecraft/entity/ServerEntityPlayer
+	m	()Ljava/lang/String;	a	loadFont
 c	m	net/minecraft/util/ITranslator
 c	n	net/minecraft/command/Command
-	m	(Lr;)Lof;	c	parsePlayer
-		p	0	r	executor
 	f	Lm;	a	translator
+	m	(Lr;)Lof;	c	parsePlayer
+		p	0		executor
 	m	(Lr;Ljava/lang/String;II)I	a	parseInt
 		c	Shorthand for parsing an integer from a string with bounds
-		p	2	integer3	lower
-		p	1	string	val
-		p	0	r	executor
-		p	3	integer4	upper
+		p	2		lower
+		p	1		val
+		p	0		executor
+		p	3		upper
+	m	(Ljava/lang/String;Ljava/lang/String;)Z	a	nameEquals
+		p	0		name
+		p	1		other
 	m	(Lr;Ljava/lang/String;)I	a	parseInt
 		c	Shorthand for parsing an integer from a string
-		p	1	string	val
-		p	0	r	executor
-	m	(Ljava/lang/String;Ljava/lang/String;)Z	a	nameEquals
-		p	0	string1	name
-		p	1	string2	other
+		p	1		val
+		p	0		executor
 	m	([Ljava/lang/String;I)Ljava/lang/String;	a	concatArguments
-		p	0	arr	args
+		p	0		args
 		p	1		offset
-	m	([Ljava/lang/Object;)Ljava/lang/String;	a	concat
-	m	(Lm;)V	a	setTranslator
-	m	(Lr;Ljava/lang/String;[Ljava/lang/Object;)V	a	sendMessage
 	m	(Lr;Ljava/lang/String;I)I	a	parseInt
 		c	Shorthand for parsing an integer from a string with a lower bound
-		p	2	integer	lower
-		p	0	r	executor
-		p	1	string	val
+		p	2		lower
+		p	0		executor
+		p	1		val
+	m	(Lr;Ljava/lang/String;[Ljava/lang/Object;)V	a	sendMessage
+	m	(Lm;)V	a	setTranslator
+	m	([Ljava/lang/Object;)Ljava/lang/String;	a	concat
 	m	(Ljava/lang/Object;)I	compareTo	compareTo
 		p	1		other
 c	o	net/minecraft/command/Commands
 	f	Ljava/util/Map;	a	commandMap
-	m	(Lp;)Lp;	a	execute
-		p	1	p	command
 	m	([Ljava/lang/String;)[Ljava/lang/String;	a	parseArgs
-		p	0	arr	args
+		p	0		args
+	m	(Lp;)Lp;	a	execute
+		p	1		command
 	f	Ljava/util/Set;	b	commands
 c	p	net/minecraft/command/ICommand
 	m	(Lr;)Z	b	canExecute
+	m	()Ljava/util/List;	a	getAliases
 	m	(Lr;)Ljava/lang/String;	a	getUsage
 		p	1		player
-	m	()Ljava/util/List;	a	getAliases
 	m	()Ljava/lang/String;	b	getName
 	m	(Lr;[Ljava/lang/String;)Ljava/util/List;	a	get
 		p	2		args
-		p	1	r	executor
+		p	1		executor
 	m	(Lr;[Ljava/lang/String;)V	b	execute
 		p	1		player
 		p	2		args
 c	q	net/minecraft/command/ICommandParser
 	m	(Lr;)Ljava/util/List;	a	getExecutable
-		p	1	r	executor
+		p	1		executor
 	m	()Ljava/util/Map;	a	getMap
 	m	(Lr;Ljava/lang/String;)Ljava/util/List;	b	parse
-		p	2	string	command
-		p	1	r	executor
+		p	2		command
+		p	1		executor
 	m	(Lr;Ljava/lang/String;)V	a	execute
-		p	1	r	executor
-		p	2	string	command
+		p	1		executor
+		p	2		command
 c	r	net/minecraft/command/IExecutor
 	m	(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;	a	translate
 		p	2		args
@@ -488,23 +679,86 @@ c	t	net/minecraft/command/CommandExperience
 c	u	net/minecraft/command/CommandGamemode
 c	v	net/minecraft/command/CommandGive
 	m	(Ljava/lang/String;)Lof;	a	getPlayer
-		p	1	string	name
+		p	1		name
 c	w	net/minecraft/command/CommandHelp
 	m	()Ljava/util/Map;	c	getCommandMap
 	m	(Lr;)Ljava/util/List;	d	getSortedCommands
-		p	1	r	executor
+		p	1		executor
 c	x	net/minecraft/command/CommandKill
 c	y	net/minecraft/command/CommandSeed
-c	db	net/minecraft/net/Packet
+c	db	net/minecraft/net/packet/Packet
 	f	Ljava/util/Map;	a	classMap
 	m	(IZZLjava/lang/Class;)V	a	a
-		p	0	integer	id
-		p	3	class4	type
+		p	0		id
+		p	3		type
+	m	(Ljava/io/DataInputStream;I)Ljava/lang/String;	a	fromStream
 	f	J	m	time
 	m	(Ldc;)V	a	process
-	m	()I	a	size
 	f	Z	r	isEncrypted
+	m	()I	a	size
 c	dc	net/minecraft/net/NetPlayHandler
 	c	TODO: is this server or client? i dont wanna know tbh
 	m	(Ldb;)V	a	handle
 	m	(Ljava/lang/String;[Ljava/lang/Object;)V	a	disconnect
+c	net/minecraft/server/MinecraftServer	net/minecraft/server/MinecraftServer
+	m	()Lq;	D	getCommandParser
+	m	()Lnet/minecraft/server/MinecraftServer;	C	getInstance
+	m	()Let;	ab	getPlayers
+	f	Ljava/util/logging/Logger;	a	LOGGER
+c	uo	World
+	f	Z	K	isClient
+c	ei	net/minecraft/net/server/BanList
+c	el	net/minecraft/util/LoggerHandler
+	f	Ljava/util/logging/Logger;	a	LOGGER
+	m	()V	a	logToFile
+		c	Save all logs from current session to file
+c	em	net/minecraft/util/LoggerFormat
+	c	Used to format logs for client and server.
+	m	(Ljava/util/logging/LogRecord;)Ljava/lang/String;	format	format
+		p	1		record
+	f	Ljava/text/SimpleDateFormat;	a	format
+c	es	net/minecraft/crash/CallableServerInfo
+	f	Lnet/minecraft/server/MinecraftServer;	a	server
+	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>	<init>
+		p	1		server
+c	et	net/minecraft/net/server/ServerJoins
+	f	Lei;	h	bannedips
+	f	Lei;	g	banned
+	m	(Ljava/lang/String;)Lgt;	f	get
+	m	(Laz;Lgt;)V	a	handlePlayer
+		p	2	gt	player
+		p	1	az	handler
+	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>	<init>
+		p	1	minecraftServer	server
+	f	Ljava/util/List;	b	players
+	m	(Lgt;)V	a	a
+		p	1	gt	player
+	f	Ljava/util/logging/Logger;	a	Logger
+c	ev	net/minecraft/util/ServerProperties
+	c	Helper class to aid with creating and loading properties for server files.
+	f	Ljava/util/Properties;	b	props
+	f	Ljava/io/File;	c	file
+	m	()Ljava/io/File;	c	getFile
+	m	(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;	a	getString
+		c	Get a string from the properties file, or set it to a default if it wasn't found
+		p	2		def
+			c	Default string to set if key does not exist
+		p	1		key
+			c	Key to get from the properties file
+	m	(Ljava/io/File;)V	<init>	<init>
+		p	1		file
+	m	()V	b	generate
+	m	(Ljava/lang/String;I)I	a	getInt
+		p	1		key
+		p	2		def
+	m	(Ljava/lang/String;Z)Z	a	getBoolean
+	m	()V	a	generateProperties
+	f	Ljava/util/logging/Logger;	a	LOGGER
+c	fk	net/minecraft/command/CommandSaveAll
+c	of	net/minecraft/entity/EntityPlayer
+	f	Ljava/lang/String;	bJ	name
+c	afn	net/minecraft/block/BlockDirt
+c	gt	net/minecraft/entity/ServerEntityPlayer
+c	afx	net/minecraft/block/BlockFire
+c	aga	net/minecraft/block/BlockGrass
+c	agb	net/minecraft/block/BlockGravel
