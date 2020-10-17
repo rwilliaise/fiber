@@ -63,7 +63,16 @@ c	ad	net/minecraft/util/error/FormattedException
 c	ae	net/minecraft/util/error/SyntaxException
 c	af	net/minecraft/util/error/PlayerNotFoundException
 c	ag	net/minecraft/util/error/NotFoundException
+c	el	net/minecraft/util/LoggerHandler
+	f	Ljava/util/logging/Logger;	a	LOGGER
+	m	()V	a	logToFile
+		c	Save all logs from current session to file
 c	ah	net/minecraft/util/error/SyntaxedException
+c	em	net/minecraft/util/LoggerFormat
+	c	Used to format logs for client and server.
+	m	(Ljava/util/logging/LogRecord;)Ljava/lang/String;	format	format
+		p	1	logRecord	record
+	f	Ljava/text/SimpleDateFormat;	a	format
 c	aj	net/minecraft/util/I18nHelper
 	m	(Ljava/lang/String;)Ljava/lang/String;	a	getRaw
 		p	0	string	rawKey
@@ -102,6 +111,10 @@ c	ak	net/minecraft/util/I18n
 c	al	net/minecraft/nbt/TagByteArray
 c	am	net/minecraft/nbt/TagByte
 c	an	net/minecraft/nbt/TagCompound
+c	es	net/minecraft/crash/CallableServerInfo
+	f	Lnet/minecraft/server/MinecraftServer;	a	server
+	m	(Lnet/minecraft/server/MinecraftServer;)V	<init>	<init>
+		p	1	minecraftServer	server
 c	ao	net/minecraft/nbt/TagDouble
 c	et	et
 	m	(Ljava/lang/String;)Lgt;	f	get
@@ -109,6 +122,26 @@ c	ap	net/minecraft/nbt/TagEnd
 c	net/minecraft/client/Minecraft	net/minecraft/client/Minecraft
 	m	()Lnet/minecraft/client/Minecraft;	x	getInstance
 c	aq	net/minecraft/nbt/TagFloat
+c	ev	net/minecraft/util/ServerProperties
+	c	Helper class to aid with creating and loading properties for server files.
+	m	()Ljava/io/File;	c	getFile
+	f	Ljava/io/File;	c	file
+	f	Ljava/util/Properties;	b	props
+	m	(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;	a	getString
+		c	Get a string from the properties file, or set it to a default if it wasn't found
+		p	2	string2	def
+			c	Default string to set if key does not exist
+		p	1	string1	key
+			c	Key to get from the properties file
+	m	(Ljava/io/File;)V	<init>	<init>
+		p	1	file	file
+	m	(Ljava/lang/String;Z)Z	a	getBoolean
+	m	(Ljava/lang/String;I)I	a	getInt
+		p	1	string	key
+		p	2	integer	def
+	m	()V	b	generate
+	m	()V	a	generateProperties
+	f	Ljava/util/logging/Logger;	a	LOGGER
 c	rc	net/minecraft/item/FoodItem
 c	ar	net/minecraft/nbt/TagIntArray
 c	as	net/minecraft/nbt/TagInt
@@ -181,12 +214,17 @@ c	ay	net/minecraft/nbt/Tag
 	m	(B)Ljava/lang/String;	a	fromByte
 	m	(Ljava/io/DataInput;)Lay;	b	read
 c	az	net/minecraft/net/IPacketHandler
-	m	(Ldb;)V	a	a
+	m	()I	e	getEncryptionSize
+	m	()V	b	check
+	m	(Ldb;)V	a	acceptPacket
 		p	1	db	packet
 	m	()V	a	interruptWorkers
-	m	(Ldc;)V	a	a
+	m	(Ldc;)V	a	setHandler
 		p	1	dc	func
 	m	()V	f	interrupt
+	m	(Ljava/lang/String;[Ljava/lang/Object;)V	a	forceDisconnect
+		p	1	string	key
+		p	2	arr	formats
 	m	()Ljava/net/SocketAddress;	c	getAddress
 c	rp	net/minecraft/item/PickaxeItem
 c	ba	net/minecraft/net/LocalPacketHandler
@@ -198,35 +236,71 @@ c	ba	net/minecraft/net/LocalPacketHandler
 	f	Z	e	flag
 	m	(Ldb;)V	b	handlePacket
 		p	1	db	packet
-c	bb	net/minecraft/net/PacketHandler
-	f	Ljava/net/Socket;	i	socket
-	f	Z	n	n
-	f	Ljava/security/PrivateKey;	A	key
+c	bb	net/minecraft/net/ClientPacketHandler
+	f	Z	m	flagged
+	m	()Ljava/net/Socket;	g	getSocket
+	m	()V	j	read
+	f	[Ljava/lang/Object;	w	disconnectFormats
+	f	I	B	delay
+	f	Z	s	closed
 	f	Ljava/lang/Thread;	t	writeWorker
 	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;Ljava/security/PrivateKey;)V	<init>	<init>
 		p	1	socket	socket
 		p	2	string	name
 		p	3	dc	handler
 		p	4	privateKey	key
-	f	Ljava/lang/Thread;	u	readWorker
+	f	Ljava/util/List;	q	encrypted
+	f	I	e	lastPacket
 	f	Ljava/io/DataOutputStream;	l	outStream
-	f	Ljava/util/concurrent/atomic/AtomicInteger;	b	writingPackets
+	f	Ljava/util/List;	p	unencrypted
 	m	(Ljava/net/Socket;Ljava/lang/String;Ldc;)V	<init>	<init>
 		p	1	socket	socket
 		p	2	string	name
 		p	3	dc	handler
 	f	Ljava/util/concurrent/atomic/AtomicInteger;	a	readingPackets
-	f	Ljavax/crypto/SecretKey;	z	secret
+	f	Ljava/lang/String;	v	disconnectReason
+	f	Z	g	writing
 	f	Ljava/net/SocketAddress;	j	address
+	f	I	y	size
+	m	(Ldb;Z)Z	a	a
+		p	2	boolean2	encrypt
+		p	1	db	packet
+	m	()V	k	write
+	f	Ljava/net/Socket;	i	socket
+	m	(Z)Ldb;	a	pop
+		p	1	boolean1	encrypt
+	f	Z	n	n
+	f	Ljava/security/PrivateKey;	A	key
+	f	Ldc;	r	netHandler
+	f	Ljava/lang/Thread;	u	readWorker
+	m	(Ljava/lang/Exception;)V	a	forceDisconect
+		p	1	exception	e
+	f	Ljava/util/concurrent/atomic/AtomicInteger;	b	writingPackets
+	f	Ljavax/crypto/SecretKey;	z	secret
+	f	Z	f	reading
 	f	Ljava/io/DataInputStream;	k	inStream
 c	bc	net/minecraft/net/ReadWorkerThread
 c	bd	net/minecraft/net/WriteWorkerThread
+c	be	net/minecraft/net/InterruptThread
+	f	Lbb;	a	handler
+	m	(Lbb;)V	<init>	<init>
+		p	1	bb	handler
+	m	()V	run	run
 c	jm	net/minecraft/entity/Entity
 	m	(Ljd;I)Z	a	damage
 	m	(Lan;)V	d	toTag
 		p	1	an	tag
+c	bf	net/minecraft/net/DisconnectThread
+	f	Lbb;	a	handler
+	m	(Lbb;)V	<init>	<init>
+		p	1	bb	handler
+	m	()V	run	run
 c	fk	net/minecraft/command/CommandSaveAll
 c	sa	net/minecraft/item/ShovelItem
+c	br	net/minecraft/net/ChunkTilesUpdatePacket
+	f	I	b	y
+	f	I	a	x
+	f	I	d	z
 c	of	net/minecraft/entity/EntityPlayer
 c	sm	net/minecraft/item/SwordItem
 c	a	net/minecraft/crash/CrashReport
@@ -428,6 +502,9 @@ c	db	net/minecraft/net/Packet
 		p	3	class4	type
 	f	J	m	time
 	m	(Ldc;)V	a	process
+	m	()I	a	size
+	f	Z	r	isEncrypted
 c	dc	net/minecraft/net/NetPlayHandler
 	c	TODO: is this server or client? i dont wanna know tbh
 	m	(Ldb;)V	a	handle
+	m	(Ljava/lang/String;[Ljava/lang/Object;)V	a	disconnect
